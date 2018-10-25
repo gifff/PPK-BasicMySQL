@@ -37,14 +37,15 @@
             this.text_pengarang = new System.Windows.Forms.TextBox();
             this.text_jumlah = new System.Windows.Forms.TextBox();
             this.listBuku = new System.Windows.Forms.ListView();
-            this.button_refresh = new System.Windows.Forms.Button();
-            this.button_delete = new System.Windows.Forms.Button();
-            this.button_update = new System.Windows.Forms.Button();
-            this.button_add = new System.Windows.Forms.Button();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button_refresh = new System.Windows.Forms.Button();
+            this.button_delete = new System.Windows.Forms.Button();
+            this.button_update = new System.Windows.Forms.Button();
+            this.button_add = new System.Windows.Forms.Button();
+            this.button_search = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_id
@@ -124,6 +125,23 @@
             this.listBuku.TabIndex = 8;
             this.listBuku.UseCompatibleStateImageBehavior = false;
             this.listBuku.View = System.Windows.Forms.View.Details;
+            this.listBuku.SelectedIndexChanged += new System.EventHandler(this.listBuku_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Id";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Judul";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Pengarang";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Jumlah";
             // 
             // button_refresh
             // 
@@ -165,27 +183,22 @@
             this.button_add.UseVisualStyleBackColor = true;
             this.button_add.Click += new System.EventHandler(this.button_add_Click);
             // 
-            // columnHeader1
+            // button_search
             // 
-            this.columnHeader1.Text = "Id";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Judul";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Pengarang";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Jumlah";
+            this.button_search.Location = new System.Drawing.Point(678, 291);
+            this.button_search.Name = "button_search";
+            this.button_search.Size = new System.Drawing.Size(174, 39);
+            this.button_search.TabIndex = 13;
+            this.button_search.Text = "Search";
+            this.button_search.UseVisualStyleBackColor = true;
+            this.button_search.Click += new System.EventHandler(this.button_search_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1178, 428);
+            this.Controls.Add(this.button_search);
             this.Controls.Add(this.button_add);
             this.Controls.Add(this.button_update);
             this.Controls.Add(this.button_delete);
@@ -201,6 +214,7 @@
             this.Controls.Add(this.label_id);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,6 +239,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Button button_search;
     }
 }
 
