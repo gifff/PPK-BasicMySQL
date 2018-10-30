@@ -13,8 +13,10 @@ namespace BasicMySQL
 {
     public partial class Form1 : Form
     {
-        private static string connString = "datasource=127.0.0.1;port=3306;username=root;password=;database=basicmysql;SslMode=none;";
+        private static string connString = "datasource=127.0.0.1;port=3306;username=root;password=;database=perpustakaan2;SslMode=none;";
         private MySqlConnection databaseConnection = new MySqlConnection(connString);
+        private Form2 form2;
+        private Form3 form3;
 
         public Form1()
         {
@@ -25,7 +27,13 @@ namespace BasicMySQL
         public void refresh()
         {
             listBuku.Items.Clear();
-            string query = "SELECT * FROM data_buku";
+            string query = "SELECT b.id_buku, b.judul, b.pengarang, COALESCE(b.jumlah-pjm.jumlah_pinjaman, b.jumlah) as jumlah " +
+                "FROM `data_buku` AS b " +
+                "LEFT OUTER JOIN ( " +
+                "    SELECT p.id_buku AS id_buku, COUNT(*) AS jumlah_pinjaman " +
+                "    FROM `data_pinjaman` AS p " +
+                "    GROUP BY p.id_buku " +
+                ") AS pjm ON pjm.id_buku = b.id_buku ";
             try
             {
                 // Open the database
@@ -201,6 +209,26 @@ namespace BasicMySQL
         private void button_search_Click(object sender, EventArgs e)
         {
             Search();
+        }
+
+        private void btnMahasiwa_Click(object sender, EventArgs e)
+        {
+            if (form2 == null || form2.IsDisposed)
+            {
+                form2 = new Form2();
+            }
+
+            form2.Show();
+        }
+
+        private void btnPinjam_Click(object sender, EventArgs e)
+        {
+            if (form3 == null || form3.IsDisposed)
+            {
+                form3 = new Form3();
+            }
+
+            form3.Show();
         }
     }
 }
